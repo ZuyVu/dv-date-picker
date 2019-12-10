@@ -38,7 +38,7 @@ export const CALENDAR_MONTHs = {
 export const NO_OF_DISPLAYED_WEEKS = 6;
 
 // to return month number with leading 0. Eg. Jun 6 => 06
-export const zeroPad = (value, lenth) => `${value}`.padStart(lenth, '0');
+export const zeroPad = (value, lenth = 2) => `${value}`.padStart(lenth, '0');
 
 export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
   const monthsWith30days = [4, 6, 9, 11];
@@ -55,7 +55,7 @@ export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
 
 // Get the first day of a month as an int
 export const getMonthFirstDay = (month = THIS_MONTH, year = THIS_YEAR) => {
-  return +(new Date(`${year}-${zeroPad(month, 2)}-01`).getDay()) + 1;
+  return +(new Date(`${year}-${zeroPad(month)}-01`).getDay()) + 1;
 }
 
 export const getPreviousMonth = (month, year) => {
@@ -86,18 +86,18 @@ export default (month = THIS_MONTH, year = THIS_YEAR) => {
 
   const prevMonthDates = [... new Array(daysFromPrevMonth)].map((n, index) => {
     const day = index + 1 + (prevMonthDays - daysFromPrevMonth);
-    return [ prevMonthYear, zeroPad(prevMonth, 2), zeroPad(day, 2)];
+    return [ prevMonthYear, zeroPad(prevMonth), zeroPad(day)];
     // Each date will be an array [year, month, day]
   });
 
   const thisMonthDates = [... new Array(monthDays)].map((n, index) => {
     const day = index + 1;
-    return [year, zeroPad(month, 2), zeroPad(day,2)];
+    return [year, zeroPad(month), zeroPad(day)];
   });
 
   const nextMonthDates = [...new Array(daysFromNextMonth)].map((n, index) => {
     const day = index + 1;
-    return [nextMonthYear, zeroPad(nextMonth, 2), zeroPad(day, 2)];
+    return [nextMonthYear, zeroPad(nextMonth), zeroPad(day)];
   });
 
   return [ ...prevMonthDates, ...thisMonthDates, ...nextMonthDates ];
