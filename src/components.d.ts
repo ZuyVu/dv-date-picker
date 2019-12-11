@@ -12,6 +12,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 export namespace Components {
   interface DvCalendar {
     'date': Date;
+    'onDateChange': Function;
   }
 }
 
@@ -31,6 +32,7 @@ declare global {
 declare namespace LocalJSX {
   interface DvCalendar {
     'date'?: Date;
+    'onDateChange'?: Function;
   }
 
   interface IntrinsicElements {
