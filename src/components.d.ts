@@ -14,6 +14,10 @@ export namespace Components {
     'date': Date;
     'onDateChange': Function;
   }
+  interface DvDatePicker {
+    'dateString': string;
+    'label': string;
+  }
 }
 
 declare global {
@@ -24,8 +28,15 @@ declare global {
     prototype: HTMLDvCalendarElement;
     new (): HTMLDvCalendarElement;
   };
+
+  interface HTMLDvDatePickerElement extends Components.DvDatePicker, HTMLStencilElement {}
+  var HTMLDvDatePickerElement: {
+    prototype: HTMLDvDatePickerElement;
+    new (): HTMLDvDatePickerElement;
+  };
   interface HTMLElementTagNameMap {
     'dv-calendar': HTMLDvCalendarElement;
+    'dv-date-picker': HTMLDvDatePickerElement;
   }
 }
 
@@ -34,9 +45,14 @@ declare namespace LocalJSX {
     'date'?: Date;
     'onDateChange'?: Function;
   }
+  interface DvDatePicker {
+    'dateString'?: string;
+    'label'?: string;
+  }
 
   interface IntrinsicElements {
     'dv-calendar': DvCalendar;
+    'dv-date-picker': DvDatePicker;
   }
 }
 
@@ -47,6 +63,7 @@ declare module "@stencil/core" {
   export namespace JSX {
     interface IntrinsicElements {
       'dv-calendar': LocalJSX.DvCalendar & JSXBase.HTMLAttributes<HTMLDvCalendarElement>;
+      'dv-date-picker': LocalJSX.DvDatePicker & JSXBase.HTMLAttributes<HTMLDvDatePickerElement>;
     }
   }
 }
