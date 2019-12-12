@@ -41,6 +41,7 @@ export const NO_OF_DISPLAYED_WEEKS = 6;
 export const zeroPad = (value, lenth = 2) => `${value}`.padStart(lenth, '0');
 
 export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
+  if (month < 1 || month > 12 || year < 1) return 0;
   const monthsWith30days = [4, 6, 9, 11];
   const leapYear = year % 4 == 0;
 
