@@ -1,25 +1,29 @@
-.arrow-left {
-  border-right: 2.4em solid #ccc;
-	left: 1.5rem;
+.arrow {
+	position: relative;
+  cursor: pointer;
+  font-size: 5em;
+  color: #35477d;
+	padding: 0;
+	border: none;
+	transition: all .25s ease-out;
 }
 
-.arrow-left:hover {
-		border-right-color: #06c;
+.arrow-left {
+	margin-left: 5%;
+}
+
+button.arrow:hover {
+	color: #fe346e;
 }
 
 .arrow-right {
-  border-left: 2.4em solid #ccc;
-	right: 1.5rem;
-}
-
-.arrow-right:hover {
-		border-left-color: #06c;
+	margin-right: 5%;
 }
 
 
 .calendar-container {
   font-size: 5px;
-	border: 2px solid #06c;
+	border: 2px solid #111d5e;
 	border-radius: 5px;
 	overflow: hidden;
 }
@@ -33,7 +37,7 @@
 .calendar-month {
   font-weight: 500;
 	font-size: 5em;
-	color: #06c;
+	color: #111d5e;
 	text-align: center;
 	padding: 0.5em 0.25em;
 	word-spacing: 5px;
@@ -48,9 +52,9 @@
 .calendar-day {
   font-weight: 600;
   font-size: 2.25em;
-  color: #06c;
-  border-top: 2px solid #06c;
-  border-bottom: 2px solid #06c;
+  color: #111d5e;
+  border-top: 2px solid #111d5e;
+  border-bottom: 2px solid #111d5e;
 }
 
 .calendar-cell {
@@ -59,47 +63,37 @@
 	letter-spacing: 0.1rem;
 	padding: 0.6em 0.25em;
 	user-select: none;
-  /* grid-column: ((index % 7) + 1 )  / span 1; */
 }
 
 .calendar-date {
   font-size: 4em;
   border: 1px solid lightgray;
+  transition: all 0.4s ease-out;
+}
+
+div.calendar-date:hover {
+  color: #111d5e !important;
+  background: rgba(0, 102, 204, 0.075) !important;
 }
 
 .calendar-date[notSameMonth] {
-  background-color: gray;
+  background-color: rgb(173, 173, 173);
   font-size: 4em;
   color: lightgray;
 }
 
 .calendar-date[today] {
-  background-color: lightskyblue;
+  color: #06c;
+  border: 1px solid #06c !important;
   font-size: 4em;
 }
 
 .calendar-date[chosen] {
-  background-color: blue;
+  background-color: #e9a347;
+  color: #fff;
   font-size: 4em;
 }
 
-.arrow {
-  appearance: none;
-	user-select: none;
-	outline: none !important;
-	display: inline-block;
-	position: relative;
-	cursor: pointer;
-	padding: 0;
-	border: none;
-	border-top: 1.6em solid transparent;
-	border-bottom: 1.6em solid transparent;
-	transition: all .25s ease-out;
-}
-
-table {
-  font-size: 15px;
-}
 
 
 

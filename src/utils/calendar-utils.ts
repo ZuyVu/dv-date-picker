@@ -79,7 +79,7 @@ export const getDateString = (date = new Date) => {
     date.getFullYear(),
     zeroPad(+date.getMonth() + 1, 2),
     zeroPad(+date.getDate(), 2)
-  ].join('/');
+  ].join('-');
 }
 
 export const parseDate = (dateString: string) => {

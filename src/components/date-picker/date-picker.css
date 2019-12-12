@@ -1,5 +1,6 @@
 .date-picker-container {
   position: relative;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .date-picker-form {
@@ -7,9 +8,10 @@
 	justify-content: space-between;
 	position: relative;
 	width: 100%;
-	border: 2px solid #06c;
+	border: 2px solid #111d5e;
 	border-radius: 5px;
-	overflow: hidden;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .date-picker-label {
@@ -20,12 +22,13 @@
 	font-size: 0.7rem;
 	letter-spacing: 2px;
 	text-transform: uppercase;
-	color: #06c;
-	border-right: 2px solid #06c;
+	color: #ffbd69;
+	/* color: rgb(139, 150, 161); */
+	border-right: 2px solid b21f66;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(0, 102, 204, 0.05);
+	background: #111d5e;
 }
 
 .date-picker-input {

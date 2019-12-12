@@ -7,13 +7,13 @@ import { getDateString, parseDate } from "../../utils/calendar-utils";
   shadow: true,
 })
 export class DatePicker {
-  @Prop() default: string; // If named defaultDate, Stencil does not link this to att. a Stencil bug?
+  @Prop({ reflectToAttr: true, mutable:true }) value: string; // If named defaultDate, Stencil does not link this to att. a Stencil bug?
   @State() openCalendar = false;
   @State() date = this.setDate();
 
   setDate() {
-    if(this.default) {
-      const date = parseDate(this.default);
+    if(this.value) {
+      const date = parseDate(this.value);
       if(date) return date;
     }
     return new Date();
@@ -26,11 +26,12 @@ export class DatePicker {
 
   onDateChange(date: Date) {
     this.date = date;
+    this.value = getDateString(date);
     this.openCalendar = false;
   }
 
   render() {
-    console.log(`DefaultDate is ${this.default}`);
+    console.log(`DefaultDate is ${this.value}`);
 
     const calendarRender = this.openCalendar?  (
       <div class="calendar">
@@ -50,8 +51,7 @@ export class DatePicker {
             readOnly
             placeholder="YYYY / MM / DD"
             onClick={this.toggleCalendar.bind(this)}
-            />
-          {/* <button class="large-button" onClick={this.toggleCalendar.bind(this)}>Toggle Calendar for me</button> */}
+          />
         </div>
         {calendarRender}
       </div>

@@ -61,7 +61,7 @@ export class Calendar {
           &lt;&lt;
         </button>
 
-        <button class="arrow arrow-left" onClick={this.gotoPrevMonth.bind(this)}>
+        <button class="arrow" onClick={this.gotoPrevMonth.bind(this)}>
           &lt;
         </button>
 
@@ -69,7 +69,7 @@ export class Calendar {
           {CALENDAR_MONTHS[this.current.month]} {this.current.year}
         </div>
 
-        <button class="arrow arrow-right" onClick={this.gotoNextMonth.bind(this)}>
+        <button class="arrow" onClick={this.gotoNextMonth.bind(this)}>
           &gt;
         </button>
 
@@ -80,15 +80,6 @@ export class Calendar {
     )
   }
 
-
-  // renderDayLabel = (day, index) => {
-  //   const daylabel = WEEK_DAYS[day].toUpperCase();
-  //   return (
-  //     <div class="calendar-cell">
-  //       {daylabel}
-  //     </div>
-  //   );
-  // };
   renderDayLabel = (day, index) => {
     const daylabel = WEEK_DAYS[day].toUpperCase();
     return (
@@ -97,17 +88,6 @@ export class Calendar {
       </div>
     );
   };
-
-  // gotoDate = date => evt => {
-  //   evt && evt.preventDefault();
-  //   const { current } = this.state;
-  //   const { onDateChanged } = this.props;
-
-  //   !(current && isSameDay(date, current)) &&
-  //     this.setState(this.resolveStateFromDate(date), () => {
-  //       typeof onDateChanged === "function" && onDateChanged(date);
-  //     });
-  // };
 
   gotoDate = (date: Date, notSameMonth: boolean) => evt => {
     evt && evt.preventDefault();
@@ -123,9 +103,6 @@ export class Calendar {
   renderCalendarDates = (date, index) => {
 
     const _date = new Date(date.join("-"));
-    // console.log(_date);
-    // const { current, month, year, today } = this.current;
-
 
     const today = sameDay(_date, this.today);
     const chosen = sameDay(_date, this.current.chosen);
@@ -133,31 +110,16 @@ export class Calendar {
       // month && year && isSameMonth(_date, new Date([year, month, 1].join("-")));
 
     const notSameMonth = (_date.getMonth() + 1) !== this.current.month;
-    // console.log(notSameMonth);
 
     const onClick = this.gotoDate(_date, notSameMonth);
 
-    // const props = { index, inMonth, onClick, title: _date.toDateString() };
-
-    // const DateComponent = isCurrent
-    //   ? Styled.HighlightedCalendarDate
-    //   : isToday
-    //     ? Styled.TodayCalendarDate
-    //     : Styled.CalendarDate;
-    console.log("DOES IT GET RERENDER ?");
     const props = { onClick, notSameMonth, today, chosen }
 
       return (
-        // <DateComponent key={getDateISO(_date)} {...props}>
-        //   {_date.getDate()}
-        // </DateComponent>
         <div class="calendar-date calendar-cell" {...props}>
           {_date.getDate()}
         </div>
       );
-
-
-
   };
 
   render() {
