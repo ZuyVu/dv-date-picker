@@ -1,0 +1,95 @@
+.arrow-left {
+  border-right: 2.4em solid #ccc;
+	left: 1.5rem;
+}
+
+.arrow-left:hover {
+		border-right-color: #06c;
+}
+
+.arrow-right {
+  border-left: 2.4em solid #ccc;
+	right: 1.5rem;
+}
+
+.arrow-right:hover {
+		border-left-color: #06c;
+}
+
+
+.calendar-container {
+  font-size: 5px;
+	border: 2px solid #06c;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.calendar-header {
+  display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.calendar-month {
+  font-weight: 500;
+	font-size: 5em;
+	color: #06c;
+	text-align: center;
+	padding: 0.5em 0.25em;
+	word-spacing: 5px;
+	user-select: none;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template: repeat(7, auto) / repeat(7, auto);
+}
+
+.calendar-day {
+  font-weight: 600;
+  font-size: 2.25em;
+  color: #06c;
+  border-top: 2px solid #06c;
+  border-bottom: 2px solid #06c;
+}
+
+.calendar-cell {
+  text-align: center;
+	align-self: center;
+	letter-spacing: 0.1rem;
+	padding: 0.6em 0.25em;
+	user-select: none;
+  /* grid-column: ((index % 7) + 1 )  / span 1; */
+}
+
+.calendar-date {
+  font-size: 4em;
+  border: 1px solid lightgray;
+}
+
+.calendar-date[notSameMonth] {
+  background-color: gray;
+  font-size: 4em;
+  color: lightgray;
+}
+
+.arrow {
+  appearance: none;
+	user-select: none;
+	outline: none !important;
+	display: inline-block;
+	position: relative;
+	cursor: pointer;
+	padding: 0;
+	border: none;
+	border-top: 1.6em solid transparent;
+	border-bottom: 1.6em solid transparent;
+	transition: all .25s ease-out;
+}
+
+table {
+  font-size: 15px;
+}
+
+
+
