@@ -1,5 +1,5 @@
 import { Component, Prop, State, h } from '@stencil/core'
-import calendar, { CALENDAR_MONTHS, getPreviousMonth, getNextMonth, WEEK_DAYS } from '../../utils/calendar-utils'
+import calendar, { CALENDAR_MONTHS, getPreviousMonth, getNextMonth, sameDay, WEEK_DAYS } from '../../utils/calendar-utils'
 
 @Component({
   tag: 'dv-calendar',
@@ -54,9 +54,6 @@ export class Calendar {
   }
 
   renderCurrentMonthYear() {
-    const { month, year } = this.current;
-    // console.log(this.current)
-    const monthname = CALENDAR_MONTHS[month];
 
     return (
       <div class="calendar-header">
@@ -67,7 +64,6 @@ export class Calendar {
         <button class="arrow arrow-left" onClick={this.gotoPrevMonth.bind(this)}>
           &lt;
         </button>
-
 
         <div class="calendar-month">
           {CALENDAR_MONTHS[this.current.month]} {this.current.year}
@@ -81,7 +77,6 @@ export class Calendar {
           &gt;&gt;
         </button>
       </div>
-      // <p>Something</p>
     )
   }
 
@@ -119,8 +114,8 @@ export class Calendar {
     this.current =  this.getCurrentState(date);
     if(!notSameMonth) { // If chosen a date on the same month
       this.current.chosen = date;
+      this.trigger = !this.trigger;
       this.dateChanceCallback(date);
-      // console.log('RUN THIS');
     } // Otherwise just update the view
     // console.log(date);
   }
@@ -132,8 +127,8 @@ export class Calendar {
     // const { current, month, year, today } = this.current;
 
 
-    // const isToday = isSameDay(_date, today);
-    // const isCurrent = current && isSameDay(_date, current);
+    const today = sameDay(_date, this.today);
+    const chosen = sameDay(_date, this.current.chosen);
     // const inMonth =
       // month && year && isSameMonth(_date, new Date([year, month, 1].join("-")));
 
@@ -149,8 +144,8 @@ export class Calendar {
     //   : isToday
     //     ? Styled.TodayCalendarDate
     //     : Styled.CalendarDate;
-
-    const props = { onClick, notSameMonth }
+    console.log("DOES IT GET RERENDER ?");
+    const props = { onClick, notSameMonth, today, chosen }
 
       return (
         // <DateComponent key={getDateISO(_date)} {...props}>

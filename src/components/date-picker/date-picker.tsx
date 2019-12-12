@@ -30,12 +30,11 @@ export class DatePicker {
   }
 
   render() {
-    // console.log("RERENDER ?");
     console.log(`DefaultDate is ${this.default}`);
 
     const calendarRender = this.openCalendar?  (
       <div class="calendar">
-        <dv-calendar dateChanceCallback={this.onDateChange.bind(this)}></dv-calendar>
+        <dv-calendar date={this.date} dateChanceCallback={this.onDateChange.bind(this)}></dv-calendar>
       </div>
     ) :
     (<div></div>);

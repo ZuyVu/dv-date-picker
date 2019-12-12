@@ -93,6 +93,20 @@ export const parseDate = (dateString: string) => {
   return isValidDate? date: null;
 }
 
+export const sameDay = (date1: Date, date2: Date) => {
+    if (!(date1 instanceof Date) || !(date2 instanceof Date)) return false;
+
+    const date1Day = +date1.getDate();
+    const date1Month = +(date1.getMonth()) + 1;
+    const date1Year = +date1.getFullYear();
+
+    const date2Day = +date2.getDate();
+    const date2Month = +(date2.getMonth()) + 1;
+    const date2Year = +date2.getFullYear();
+
+    return (date1Day === date2Day) && (date1Month === date2Month) && (date1Year === date2Year);
+}
+
 export default (month = THIS_MONTH, year = THIS_YEAR) => {
   const monthDays = getMonthDays(month, year);
   const monthFirstDay = getMonthFirstDay(month, year);

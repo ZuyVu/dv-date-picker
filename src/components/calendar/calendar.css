@@ -73,6 +73,16 @@
   color: lightgray;
 }
 
+.calendar-date[today] {
+  background-color: lightskyblue;
+  font-size: 4em;
+}
+
+.calendar-date[chosen] {
+  background-color: blue;
+  font-size: 4em;
+}
+
 .arrow {
   appearance: none;
 	user-select: none;
