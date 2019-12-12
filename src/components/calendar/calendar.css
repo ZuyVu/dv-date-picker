@@ -1,10 +1,19 @@
+.calendar-container {
+  width: 100%;
+  font-size: 5px;
+	border: 2px solid #111d5e;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
 .arrow {
 	position: relative;
   cursor: pointer;
   font-size: 5em;
-  color: #35477d;
+  color: #4b64ad;
 	padding: 0;
-	border: none;
+  border: none;
+  background-color: transparent;
 	transition: all .25s ease-out;
 }
 
@@ -20,24 +29,17 @@ button.arrow:hover {
 	margin-right: 5%;
 }
 
-
-.calendar-container {
-  font-size: 5px;
-	border: 2px solid #111d5e;
-	border-radius: 5px;
-	overflow: hidden;
-}
-
 .calendar-header {
   display: flex;
 	align-items: center;
-	justify-content: space-between;
+  justify-content: space-between;
+  background-color: #111d5e;
 }
 
 .calendar-month {
   font-weight: 500;
 	font-size: 5em;
-	color: #111d5e;
+	color: #ffbd69;
 	text-align: center;
 	padding: 0.5em 0.25em;
 	word-spacing: 5px;
@@ -52,7 +54,8 @@ button.arrow:hover {
 .calendar-day {
   font-weight: 600;
   font-size: 2.25em;
-  color: #111d5e;
+  color: #ffbd69;
+  background-color: #111d5e;
   border-top: 2px solid #111d5e;
   border-bottom: 2px solid #111d5e;
 }
@@ -73,7 +76,7 @@ button.arrow:hover {
 
 div.calendar-date:hover {
   color: #111d5e !important;
-  background: rgba(0, 102, 204, 0.075) !important;
+  background: rgba(0, 102, 204, 0.281) !important;
 }
 
 .calendar-date[notSameMonth] {

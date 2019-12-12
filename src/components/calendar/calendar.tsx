@@ -91,13 +91,17 @@ export class Calendar {
 
   gotoDate = (date: Date, notSameMonth: boolean) => evt => {
     evt && evt.preventDefault();
-    this.current =  this.getCurrentState(date);
     if(!notSameMonth) { // If chosen a date on the same month
-      this.current.chosen = date;
-      this.trigger = !this.trigger;
+      console.log("Same Month goes here ?");
+      this.current = this.getCurrentState(date);
       this.dateChanceCallback(date);
-    } // Otherwise just update the view
-    // console.log(date);
+    } else {
+      console.log("Not Same Month goes Here ?");
+      this.current.month = +(date.getMonth()) + 1;
+      this.current.year = date.getFullYear();
+      console.log(this.current);
+    }
+    this.trigger = !this.trigger; // This trigger rerender
   }
 
   renderCalendarDates = (date, index) => {
@@ -111,7 +115,7 @@ export class Calendar {
 
     const notSameMonth = (_date.getMonth() + 1) !== this.current.month;
 
-    const onClick = this.gotoDate(_date, notSameMonth);
+    const onClick = this.gotoDate(_date, notSameMonth).bind(this);
 
     const props = { onClick, notSameMonth, today, chosen }
 
@@ -123,7 +127,7 @@ export class Calendar {
   };
 
   render() {
-    // console.log(this.current.chosen)
+    console.log("Rerendering ?");
     return (
       <div class="calendar-container">
 
