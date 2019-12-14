@@ -107,16 +107,11 @@ export class Calendar {
   renderCalendarDates = (date, index) => {
 
     const _date = new Date(date.join("-"));
-
+    // Generate a series of props/attrs
     const today = sameDay(_date, this.today);
     const chosen = sameDay(_date, this.current.chosen);
-    // const inMonth =
-      // month && year && isSameMonth(_date, new Date([year, month, 1].join("-")));
-
     const notSameMonth = (_date.getMonth() + 1) !== this.current.month;
-
     const onClick = this.gotoDate(_date, notSameMonth).bind(this);
-
     const props = { onClick, notSameMonth, today, chosen }
 
       return (
@@ -135,9 +130,9 @@ export class Calendar {
 
         <div class="calendar-grid">
 
-            {Object.keys(WEEK_DAYS).map(this.renderDayLabel)}
+          {Object.keys(WEEK_DAYS).map(this.renderDayLabel)}
 
-            {this.getCalendarDates().map(this.renderCalendarDates)}
+          {this.getCalendarDates().map(this.renderCalendarDates)}
 
         </div>
 

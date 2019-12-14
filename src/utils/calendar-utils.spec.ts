@@ -1,4 +1,4 @@
-import { getMonthDays, parseDate } from './calendar-utils';
+import { getMonthDays, parseDate, getNextMonth, getPreviousMonth, getDateString } from './calendar-utils';
 
 describe("Testing Calendar Utils", () => {
   describe("Testing parse Date String", () => {
@@ -37,13 +37,44 @@ describe("Testing Calendar Utils", () => {
     it("returns 30 days for September", () => {
       expect(getMonthDays(9, 2019)).toEqual(30);
     });
-    it("returns 28 days for Febuary for non-leap year", () => {
+    it("returns 28 days for Febuary of a non-leap year", () => {
       expect(getMonthDays(2, 2019)).toEqual(28);
     });
-    it("returns 28 days for Febuary for leap year", () => {
+    it("returns 29 days for Febuary of a leap year", () => {
       expect(getMonthDays(2, 2020)).toEqual(29);
     });
   });
-})
+
+  describe("Testing getPrevious/Next Month", () => {
+    it("returns next month of Dec", () => {
+      expect(getNextMonth(12, 2019)).toEqual({month :1, year: 2020});
+    });
+    it("returns next month of Jan", () => {
+      expect(getNextMonth(1, 2019)).toEqual({month :2, year: 2019});
+    });
+  });
+
+  describe("Testing getPrevious/Next Month", () => {
+    it("returns next month of Dec", () => {
+      expect(getNextMonth(12, 2019)).toEqual({ month: 1, year: 2020 });
+    });
+    it("returns next month of Jan", () => {
+      expect(getNextMonth(1, 2019)).toEqual({ month: 2, year: 2019 });
+    });
+    it("returns previous month of Jan", () => {
+      expect(getPreviousMonth(1, 2019)).toEqual({ month: 12, year: 2018 });
+    });
+    it("returns previous month of May", () => {
+      expect(getPreviousMonth(5, 2019)).toEqual({ month: 4, year: 2019 });
+    });
+  });
+
+  describe("Testing getDateString", () => {
+    it("return correct string for correct input", () => {
+      const date = new Date(2019, 0, 1);
+      const result = getDateString(date);
+      expect(result).toEqualText("2019-01-01");
+    });
+  });
 
 

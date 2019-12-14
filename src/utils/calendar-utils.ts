@@ -72,31 +72,26 @@ export const getNextMonth = (month, year) => {
 
   return { month: nextMonth, year: nextYear };
 }
-
+// Given a valid date, return its string representation "YYYY-MM-DD"
 export const getDateString = (date = new Date) => {
-  if (!(date instanceof Date)) return null;
-
   return [
     date.getFullYear(),
     zeroPad(+date.getMonth() + 1, 2),
     zeroPad(+date.getDate(), 2)
   ].join('-');
 }
-
+// Given a valid string date "YYYY-MM-DD", return a Date object
 export const parseDate = (dateString: string) => {
   const [year, month, day] = dateString.split('-');
+  if(year === "" || month === "" || day === "") return null;
   const date = new Date(+year, (+month - 1), +day);
-  console.log(`Parsed Date is ${date}`);
   const isValidDate = ((+date)
                       && (date.getDate() == +day)
                       && (date.getMonth() + 1 == +month));
-  console.log(`isValidDate if ${isValidDate}`);
   return isValidDate? date: null;
 }
-
+// Check if 2 Date object represents the same day
 export const sameDay = (date1: Date, date2: Date) => {
-    if (!(date1 instanceof Date) || !(date2 instanceof Date)) return false;
-
     const date1Day = +date1.getDate();
     const date1Month = +(date1.getMonth()) + 1;
     const date1Year = +date1.getFullYear();
@@ -107,7 +102,8 @@ export const sameDay = (date1: Date, date2: Date) => {
 
     return (date1Day === date2Day) && (date1Month === date2Month) && (date1Year === date2Year);
 }
-
+// This returns an array of NO_OF_DISPLAYED_WEEKS * 7 days,
+// each day is given in [year, month, day]
 export default (month = THIS_MONTH, year = THIS_YEAR) => {
   const monthDays = getMonthDays(month, year);
   const monthFirstDay = getMonthFirstDay(month, year);
