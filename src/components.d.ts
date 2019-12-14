@@ -15,6 +15,7 @@ export namespace Components {
     'dateChanceCallback': Function;
   }
   interface DvDatePicker {
+    'placeHolder': string;
     'value': string;
   }
 }
@@ -45,6 +46,7 @@ declare namespace LocalJSX {
     'dateChanceCallback'?: Function;
   }
   interface DvDatePicker {
+    'placeHolder'?: string;
     'value'?: string;
   }
 

@@ -1,12 +1,3 @@
-
-export function format(first: string, middle: string, last: string): string {
-  return (
-    (first || '') +
-    (middle ? ` ${middle}` : '') +
-    (last ? ` ${last}` : '')
-  );
-}
-
 export const THIS_YEAR = +(new Date().getFullYear());
 export const THIS_MONTH = +(new Date().getMonth()) + 1;
 
@@ -37,9 +28,9 @@ export const CALENDAR_MONTHS = {
 
 export const NO_OF_DISPLAYED_WEEKS = 6;
 
-// to return month number with leading 0. Eg. Jun 6 => 06
+// to return month/day number with leading 0. Eg. 6 => 06
 export const zeroPad = (value, lenth = 2) => `${value}`.padStart(lenth, '0');
-
+// Returns number of days in a given month
 export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
   if (month < 1 || month > 12 || year < 1) return 0;
   const monthsWith30days = [4, 6, 9, 11];
@@ -54,7 +45,7 @@ export const getMonthDays = (month = THIS_MONTH, year = THIS_YEAR) => {
   }
 }
 
-// Get the first day of a month as an int
+// Get the first day of a month
 export const getMonthFirstDay = (month = THIS_MONTH, year = THIS_YEAR) => {
   return +(new Date(`${year}-${zeroPad(month)}-01`).getDay()) + 1;
 }
@@ -72,16 +63,18 @@ export const getNextMonth = (month, year) => {
 
   return { month: nextMonth, year: nextYear };
 }
-// Given a valid date, return its string representation "YYYY-MM-DD"
-export const getDateString = (date = new Date) => {
+// Given a date Object, return its string representation "YYYY-MM-DD"
+export const getDateString = (date: Date) => {
+  if (!date) return null;
   return [
     date.getFullYear(),
     zeroPad(+date.getMonth() + 1, 2),
     zeroPad(+date.getDate(), 2)
   ].join('-');
 }
-// Given a valid string date "YYYY-MM-DD", return a Date object
+// Given a valid string "YYYY-MM-DD" of a date, return its Date object
 export const parseDate = (dateString: string) => {
+  if(!dateString) return null;
   const [year, month, day] = dateString.split('-');
   if(year === "" || month === "" || day === "") return null;
   const date = new Date(+year, (+month - 1), +day);

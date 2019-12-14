@@ -1,13 +1,19 @@
-import { Component, Prop, State, h } from '@stencil/core'
-import calendar, { CALENDAR_MONTHS, getPreviousMonth, getNextMonth, sameDay, WEEK_DAYS } from '../../utils/calendar-utils'
+import { Component, Prop, State, h } from "@stencil/core";
+import calendar, {
+  CALENDAR_MONTHS,
+  getPreviousMonth,
+  getNextMonth,
+  sameDay,
+  WEEK_DAYS
+} from "../../utils/calendar-utils";
 
 @Component({
-  tag: 'dv-calendar',
-  styleUrl: 'calendar.css',
-  shadow: true,
+  tag: "dv-calendar",
+  styleUrl: "calendar.css",
+  shadow: true
 })
 export class Calendar {
-  @Prop() date : Date;
+  @Prop() date: Date;
   @Prop() dateChanceCallback: Function;
   @State() current = this.getCurrentState(this.date);
   @State() today = new Date();
@@ -17,8 +23,8 @@ export class Calendar {
     const _date = date instanceof Date ? date : new Date();
     return {
       chosen: _date, // Currently chosen date, by default it's today
-      month: +_date.getMonth() + 1, //Currently displayed month
-      year: _date.getFullYear() //Currently displayed year
+      month: +_date.getMonth() + 1, // Currently displayed month
+      year: _date.getFullYear() // Currently displayed year
     };
   }
 
@@ -29,7 +35,7 @@ export class Calendar {
 
   gotoPrevMonth() {
     const { month, year } = this.current;
-    const result = getPreviousMonth(month, year)
+    const result = getPreviousMonth(month, year);
     this.current.month = result.month;
     this.current.year = result.year;
     this.trigger = !this.trigger; // This trigger rerender
@@ -37,7 +43,7 @@ export class Calendar {
 
   gotoNextMonth() {
     const { month, year } = this.current;
-    const result = getNextMonth(month, year)
+    const result = getNextMonth(month, year);
     this.current.month = result.month;
     this.current.year = result.year;
     this.trigger = !this.trigger; // This trigger rerender
@@ -53,8 +59,8 @@ export class Calendar {
     this.trigger = !this.trigger;
   }
 
+  // Render method for Calendar header
   renderCurrentMonthYear() {
-
     return (
       <div class="calendar-header">
         <button class="arrow arrow-left" onClick={this.gotoPrevYear.bind(this)}>
@@ -73,71 +79,64 @@ export class Calendar {
           &gt;
         </button>
 
-        <button class="arrow arrow-right" onClick={this.gotoNextYear.bind(this)}>
+        <button
+          class="arrow arrow-right"
+          onClick={this.gotoNextYear.bind(this)}
+        >
           &gt;&gt;
         </button>
       </div>
-    )
+    );
   }
 
+  // Render method for day labels
   renderDayLabel = (day, index) => {
     const daylabel = WEEK_DAYS[day].toUpperCase();
-    return (
-      <div class="calendar-day calendar-cell">
-        {daylabel}
-      </div>
-    );
+    return <div class="calendar-day calendar-cell">{daylabel}</div>;
   };
 
+  // Event handler for each calendar cell
   gotoDate = (date: Date, notSameMonth: boolean) => evt => {
     evt && evt.preventDefault();
-    if(!notSameMonth) { // If chosen a date on the same month
-      console.log("Same Month goes here ?");
+    if (!notSameMonth) {
+      // If chosen a date on the same month
       this.current = this.getCurrentState(date);
       this.dateChanceCallback(date);
     } else {
-      console.log("Not Same Month goes Here ?");
-      this.current.month = +(date.getMonth()) + 1;
+      this.current.month = +date.getMonth() + 1;
       this.current.year = date.getFullYear();
-      console.log(this.current);
     }
     this.trigger = !this.trigger; // This trigger rerender
-  }
+  };
 
+  // Render method for the calendar cell
   renderCalendarDates = (date, index) => {
-
     const _date = new Date(date.join("-"));
     // Generate a series of props/attrs
     const today = sameDay(_date, this.today);
     const chosen = sameDay(_date, this.current.chosen);
-    const notSameMonth = (_date.getMonth() + 1) !== this.current.month;
+    const notSameMonth = _date.getMonth() + 1 !== this.current.month;
     const onClick = this.gotoDate(_date, notSameMonth).bind(this);
-    const props = { onClick, notSameMonth, today, chosen }
+    const props = { onClick, notSameMonth, today, chosen };
 
-      return (
-        <div class="calendar-date calendar-cell" {...props}>
-          {_date.getDate()}
-        </div>
-      );
+    return (
+      <div class="calendar-date calendar-cell" {...props}>
+        {_date.getDate()}
+      </div>
+    );
   };
 
   render() {
-    console.log("Rerendering ?");
     return (
       <div class="calendar-container">
-
         {this.renderCurrentMonthYear()}
 
         <div class="calendar-grid">
-
           {Object.keys(WEEK_DAYS).map(this.renderDayLabel)}
 
           {this.getCalendarDates().map(this.renderCalendarDates)}
-
         </div>
-
       </div>
-    )
+    );
   }
-
 }

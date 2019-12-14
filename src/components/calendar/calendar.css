@@ -3,30 +3,6 @@
   font-size: 5px;
 	border: 2px solid #111d5e;
 	border-radius: 5px;
-	overflow: hidden;
-}
-
-.arrow {
-	position: relative;
-  cursor: pointer;
-  font-size: 5em;
-  color: #4b64ad;
-	padding: 0;
-  border: none;
-  background-color: transparent;
-	transition: all .25s ease-out;
-}
-
-.arrow-left {
-	margin-left: 5%;
-}
-
-button.arrow:hover {
-	color: #fe346e;
-}
-
-.arrow-right {
-	margin-right: 5%;
 }
 
 .calendar-header {
@@ -98,6 +74,27 @@ div.calendar-date:hover {
   font-size: 4em;
 }
 
+.arrow {
+	position: relative;
+  cursor: pointer;
+  font-size: 5em;
+  color: #4b64ad;
+	padding: 0;
+  border: none;
+  background-color: transparent;
+	transition: all .25s ease-out;
+}
 
+.arrow-left {
+	margin-left: 5%;
+}
+
+button.arrow:hover {
+	color: #fe346e;
+}
+
+.arrow-right {
+	margin-right: 5%;
+}
 
 
