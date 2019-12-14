@@ -65,13 +65,11 @@ div.calendar-date:hover {
 .calendar-date[today] {
   color: #06c;
   border: 1px solid #06c !important;
-  font-size: 4em;
 }
 
 .calendar-date[chosen] {
   background-color: #e9a347;
   color: #fff;
-  font-size: 4em;
 }
 
 .arrow {

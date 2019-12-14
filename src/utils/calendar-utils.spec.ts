@@ -76,5 +76,5 @@ describe("Testing Calendar Utils", () => {
       expect(result).toEqualText("2019-01-01");
     });
   });
-
+});
 
