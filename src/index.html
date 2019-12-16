@@ -8,11 +8,24 @@
   <script type="module" src="/build/dv-date-picker.esm.js"></script>
   <script nomodule src="/build/dv-date-picker.js"></script>
 
+  <!-- <script>
+    function showInput() {
+      const value = document.getElementById("chosenDate").value;
+      if(value) {
+        document.getElementById('display').innerHTML = value;
+      }
+    }
+  </script> -->
+
 </head>
 <body>
+  <!-- <input type="submit" onclick="showInput();"><br />
+  <p><span id='display'></span></p> -->
   <div style="width: 70%; margin-left: 15%; margin-top: 20%;">
-    <dv-date-picker>My Datepicker</dv-date-picker>
+    <dv-date-picker id="chosenDate">My Datepicker</dv-date-picker>
   </div>
+
+
 
 </body>
 </html>
